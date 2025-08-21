@@ -12,6 +12,15 @@ Para monitorar memória, disco e rede, uso o *bpytop* no proprío terminal.
 Para monitorar *containers docker*, estou usando o **Portainer** na web, na porta 9090. Sendo possível acessar na rede local com o *localhost:9090 ou ip-local:9090* & na Internet, pelo subdomínio **portainer.lucaspanzera.com**, configurado e monitorado com a ajuda da *CloudFlare Tunnel*.
 <img src="docs/img/portainer.png" alt="portainer" width="1200" align="left"/>
 
+## Postgres & Pgadmin
+Gosto bastante de usar postgreSQL em meus projetos, e para roda-ló em meu homelab, subi via *Containers Docker*, o Postgres e o Pgadmin (Interface web de gerenciamento de postgreSQL).
+
+O arquivo para subir esses servicos, estao disponíveis em -> <a href="docs/dockersfiles/postgres-pgadmin.yml">postgres-pgadmin.yml</a>
+
+**Lembre-se de alterar o nome do arquivo para docker-compose.yml, e também, definir as credenciais no arquivo.*
+<img src="docs/img/pgadmin.png" alt="pgadmin" width="1200" align="left"/>
+**Rodando na Net / Com ajuda da CloudFlare Tunnel*
+
 ## Ambiente de testes
 Estou usando o HomeLab, como uma VPS de testes.
 
