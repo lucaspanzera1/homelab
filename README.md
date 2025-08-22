@@ -1,4 +1,19 @@
-# HomeLab - 🖥️  Meu servidor em Casa 🏠
+# 🏠 HomeLab | VPS at Home
+
+<div align="left">
+
+[![Ubuntu Server](https://img.shields.io/badge/Ubuntu%20Server-22.04-orange?style=for-the-badge&logo=ubuntu)](https://ubuntu.com/)
+[![Docker](https://img.shields.io/badge/Docker-Compose-blue?style=for-the-badge&logo=docker)](https://docker.com/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Tunnel-orange?style=for-the-badge&logo=cloudflare)](https://cloudflare.com/)
+
+*🖥️ Meu laboratório de estudos e desenvolvimento em casa | Aprendendo infraestrutura de produção*
+
+- [🏗️ Infra](#️-infra) • [🐳 Docker](#-docker) • [🐘 Postgresql](#-postgres--pgadmin) • [🧪 Ambiente de testes](#-ambiente-de-testes) • [🗂️ CI&CD](#️-cicd) •
+
+
+</div>
+
+--
 
 #### Este repositório descreve meu estudos, quanto a arquitetura técnica e a configuração de um Home Lab baseado em Linux, containers e tunelamento seguro com Cloudflare.
 
@@ -34,7 +49,6 @@ Já preparo imagens *Docker* de aplicacoes minhas em Node, subo & monitoro.
 **Rodando na Net / Com ajuda da CloudFlare Tunnel*
 <img src="docs/img/app-docker.gif" alt="osphpne" width="1200" align="left"/>
 
---
 ## CI/CD
 
 Recentemente implementei um pipeline de CI/CD para automatizar o deploy da minha API Node.js que roda no meu homelab
@@ -53,7 +67,7 @@ Primeiro precisei configurar acesso SSH através do Cloudflare Tunnel. No arquiv
 
 ```yaml
   # Nova regra para SSH
-  - hostname: ssh.lucaspanzera.com
+  - hostname: ssh.meudominio.com
     service: ssh://localhost:22
 ```
 
@@ -128,7 +142,7 @@ jobs:
 
 No GitHub, em **Settings → Secrets and variables → Actions**, configurei:
 
-- `SSH_HOST`: `ssh.lucaspanzera.com`
+- `SSH_HOST`: `ssh.meudominio.com`
 - `SSH_USER`: `panzera`
 - `SSH_PRIVATE_KEY`: Conteúdo completo da minha chave privada SSH
 
