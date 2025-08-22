@@ -8,52 +8,61 @@
 
 *🖥️ Meu laboratório de estudos e desenvolvimento em casa | Aprendendo infraestrutura de produção*
 
-- [🏗️ Infra](#️-infra) • [🐳 Docker](#-docker) • [🐘 Postgresql](#-postgres--pgadmin) • [🧪 Ambiente de testes](#-ambiente-de-testes) • [🗂️ CI&CD](#️-cicd) •
-
-
 </div>
 
---
+- [🏗️ Infra](#️-infra) • [🐳 Docker](#-docker) • [🐘 Postgresql](#-postgres--pgadmin) • [🧪 Ambiente de testes](#-ambiente-de-testes) • [🗂️ CI&CD](#️-cicd) •
+
+---
 
 #### Este repositório descreve meu estudos, quanto a arquitetura técnica e a configuração de um Home Lab baseado em Linux, containers e tunelamento seguro com Cloudflare.
 
-## Infra <img src="docs/img/tux.png" alt="tux" width="30" align="center" />
+## 🏗️ Infra
+
 Estou utilizando o Ubuntu Server como sistema operacional em minha máquina, por conta da familiaridade que tenho com a distro, e o grande suporte que a Canonical e Comunidade entregam.
 
-Para monitorar memória, disco e rede, uso o *bpytop* no proprío terminal.
+Para monitorar memória, disco e rede, uso o *bpytop* no próprio terminal.
+
 <img src="docs/img/bpytop.png" alt="bpytop" width="600"/>
 
-## Docker <img src="docs/img/docker.png" alt="docker" width="30" align="center" />
+## 🐳 Docker
+
 Para monitorar *containers docker*, estou usando o **Portainer** na web, na porta 9090. Sendo possível acessar na rede local com o *localhost:9090 ou ip-local:9090* & na Internet, pelo subdomínio **portainer.lucaspanzera.com**, configurado e monitorado com a ajuda da *CloudFlare Tunnel*.
-<img src="docs/img/portainer.png" alt="portainer" width="1200" align="left"/>
 
-## Postgres & Pgadmin <img src="docs/img/postgresql.png" alt="postgres" width="30" align="center" />
-Gosto bastante de usar postgreSQL em meus projetos, e para roda-ló em meu homelab, subi via *Containers Docker*, o Postgres e o Pgadmin (Interface web de gerenciamento de postgreSQL).
+<img src="docs/img/portainer.png" alt="portainer" width="1200"/>
 
-O arquivo para subir esses servicos, estao disponíveis em -> <a href="docs/dockersfiles/postgres-pgadmin.yml">postgres-pgadmin.yml</a>
+## 🐘 Postgres & Pgadmin
+
+Gosto bastante de usar postgreSQL em meus projetos, e para rodá-lo em meu homelab, subi via *Containers Docker*, o Postgres e o Pgadmin (Interface web de gerenciamento de postgreSQL).
+
+O arquivo para subir esses serviços, estão disponíveis em → <a href="docs/dockersfiles/postgres-pgadmin.yml">postgres-pgadmin.yml</a>
 
 **Lembre-se de alterar o nome do arquivo para docker-compose.yml, e também, definir as credenciais no arquivo.*
-<img src="docs/img/pgadmin.png" alt="pgadmin" width="1200" align="left"/>
-**Rodando na Net / Com ajuda da CloudFlare Tunnel*
 
-## Ambiente de testes
+<img src="docs/img/pgadmin.png" alt="pgadmin" width="1200"/>
+
+*Rodando na Net / Com ajuda da CloudFlare Tunnel*
+
+## 🧪 Ambiente de testes
+
 Estou usando o HomeLab, como uma VPS de testes.
 
-Apredendo um pouco mais sobre CI e CD, variáveis de ambiente, perfomace de aplicacoes e etc.
+Aprendendo um pouco mais sobre CI e CD, variáveis de ambiente, performance de aplicações e etc.
 
-Já preparo imagens *Docker* de aplicacoes minhas em Node, subo & monitoro.
+Já preparo imagens *Docker* de aplicações minhas em Node, subo & monitoro.
 
-**Subindo uma aplicacao com Docker*
-<img src="docs/img/docker-compose.png" alt="docker" width="1200" align="left"/>
+**Subindo uma aplicação com Docker**
 
-**Rodando na Net / Com ajuda da CloudFlare Tunnel*
-<img src="docs/img/app-docker.gif" alt="osphpne" width="1200" align="left"/>
+<img src="docs/img/docker-compose.png" alt="docker" width="1200"/>
 
-## CI/CD
+**Rodando na Net / Com ajuda da CloudFlare Tunnel**
+
+<img src="docs/img/app-docker.gif" alt="osphpne" width="1200"/>
+
+## 🗂️ CI/CD
 
 Recentemente implementei um pipeline de CI/CD para automatizar o deploy da minha API Node.js que roda no meu homelab
 
-#### Meu setup inicial
+### Meu setup inicial
 
 - **Projeto**: Monorepo Node.js com Turbo
 - **Backend**: Express + JWT + PostgreSQL rodando em Docker
@@ -61,17 +70,17 @@ Recentemente implementei um pipeline de CI/CD para automatizar o deploy da minha
 
 O desafio era automatizar deploys quando eu fizesse push na branch main, mas sem expor minha VPS diretamente na internet.
 
-#### Configuração do SSH via Cloudflare Tunnel
+### Configuração do SSH via Cloudflare Tunnel
 
 Primeiro precisei configurar acesso SSH através do Cloudflare Tunnel. No arquivo de configuração do tunnel (`config.yml`), adicionei:
 
 ```yaml
-  # Nova regra para SSH
-  - hostname: ssh.meudominio.com
-    service: ssh://localhost:22
+# Nova regra para SSH
+- hostname: ssh.meudominio.com
+  service: ssh://localhost:22
 ```
 
-#### Configuração do GitHub Actions
+### Configuração do GitHub Actions
 
 Criei o workflow em `.github/workflows/deploy.yml`:
 
@@ -138,7 +147,7 @@ jobs:
           EOF
 ```
 
-#### Configuração dos Secrets
+### Configuração dos Secrets
 
 No GitHub, em **Settings → Secrets and variables → Actions**, configurei:
 
@@ -146,7 +155,7 @@ No GitHub, em **Settings → Secrets and variables → Actions**, configurei:
 - `SSH_USER`: `panzera`
 - `SSH_PRIVATE_KEY`: Conteúdo completo da minha chave privada SSH
 
-## Resultado
+### Resultado
 
 Agora, sempre que faço push na main com mudanças na pasta `apps/api/**`, o workflow:
 
@@ -159,5 +168,4 @@ Agora, sempre que faço push na main com mudanças na pasta `apps/api/**`, o wor
 
 Todo o processo leva cerca de 2-3 minutos, e posso acompanhar em tempo real na aba Actions do GitHub.
 
-<img src="docs/img/cicd.png" alt="cicd" width="1200" align="left"/>
-
+<img src="docs/img/cicd.png" alt="cicd" width="1200"/>
