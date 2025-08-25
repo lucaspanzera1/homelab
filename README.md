@@ -10,7 +10,7 @@
 
 </div>
 
-- [🏗️ Infra](#️-infra) • [🐳 Docker](#-docker) • [🐘 Postgresql](#-postgres--pgadmin) • [🧪 Ambiente de testes](#-ambiente-de-testes) • [🗂️ CI&CD](#️-cicd) •
+- [🏗️ Infra](#️-infra) • [🐳 Docker](#-docker) • [🐘 Postgresql](#-postgres--pgadmin) • [🧪 Ambiente de testes](#-ambiente-de-testes) • [🗂️ CI&CD](#️-cicd) • [🤖 Discord Bot](#️-bot) •
 
 ---
 
@@ -169,3 +169,8 @@ Agora, sempre que faço push na main com mudanças na pasta `apps/api/**`, o wor
 Todo o processo leva cerca de 2-3 minutos, e posso acompanhar em tempo real na aba Actions do GitHub.
 
 <img src="docs/img/cicd.png" alt="cicd" width="1200"/>
+
+## 🤖 Bot de Monitoramente no Discord
+Usando Python, estou desenvolvendo um bot Discord inteligente para monitorar e gerenciar containers Docker do seu homelab com IA integrada, monitoramento avançado de recursos e notificações automáticas de deploy! Voce pode acompanhar mais em <a href="https://github.com/lucaspanzera1/discordbot-homelab">Discord Bot Homelab</a>
+
+<img src="docs/img/discord-bot.png" alt="cicd" width="600"/>
